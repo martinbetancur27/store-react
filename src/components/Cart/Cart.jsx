@@ -1,16 +1,16 @@
 import NavBar from '../Navbar';
-import { useState } from 'react';
-import LogginButton from '../LoginButton';
+import { Navigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { CartContext } from '../../contexts/CartContext';
 
 function Cart() {
-
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  
   const  { cartItems } = useContext(CartContext);
+  const { isLoggedIn } = useContext(CartContext);
 
   const cartItemsGrouped = cartItems.reduce((group, item) => {
     const { id } = item;
+    
     if (!group[id]) {
       group[id] = { ...item, quantity: 1 };
     } else {
@@ -22,11 +22,7 @@ function Cart() {
 
   if (!isLoggedIn) {
     return (
-      <>
-        <NavBar />
-        <h1>Please log in to view your cart.</h1>
-        <LogginButton onLogin={() => setIsLoggedIn(true)} />
-      </>
+        <Navigate to="/" replace />
     );
   }
   return (

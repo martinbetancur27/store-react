@@ -296,11 +296,17 @@
   }
 } 
 
+#user-registered{
+  font-size: 22px;
+  border:rgb(104, 212, 135) solid;
+}
+
 #home-images {
   display: flex;
   gap: 16px;
   justify-content: center;
   margin-top: 32px;
+  padding: 4px;
 
   @media (max-width: 1024px) {
     flex-direction: column;
